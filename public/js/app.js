@@ -5199,6 +5199,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'app',
@@ -42207,7 +42208,16 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "card-footer" }, [
-                      _vm._m(0, true),
+                      post.user
+                        ? _c("div", { staticClass: "author" }, [
+                            _c("h5", [_vm._v("Autore")]),
+                            _vm._v(
+                              "\n                           " +
+                                _vm._s(post.user.name) +
+                                "\n                        "
+                            ),
+                          ])
+                        : _vm._e(),
                       _vm._v(" "),
                       post.category
                         ? _c("span", [
@@ -42363,14 +42373,7 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "author" }, [_c("h5", [_vm._v("Autore")])])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

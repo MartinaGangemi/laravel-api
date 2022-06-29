@@ -14,8 +14,9 @@
                            <p>{{post.content}}</p>
                         </div>
                         <div class="card-footer">
-                           <div class="author">
+                           <div class="author" v-if="post.user">
                               <h5>Autore</h5>
+                              {{post.user.name}}
                            </div>
                            <span v-if="post.category"><strong>Cartegory:</strong> {{post.category.name}}</span>
                            <div class="tags" v-if="post.tags.length > 0"> 

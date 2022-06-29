@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'slug','content', 'img', 'category_id'];
+    protected $fillable = ['title', 'slug','content', 'img', 'category_id', 'user_id'];
 
     public static function generateSlug($title)
     {
@@ -23,6 +23,11 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 

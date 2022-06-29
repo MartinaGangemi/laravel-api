@@ -11,6 +11,7 @@ use App\Mail\NewPostCreated;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PostUpdatedAdminMessage;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -22,8 +23,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $posts = Post::orderByDesc('id')->get();
+    {   
+        $posts = Post::where('user_id' , Auth::id())->orderByDesc('id')->get();
+       
         //dd($posts);
         return view ('admin.posts.index', compact('posts'));
     }
@@ -55,6 +57,7 @@ class PostController extends Controller
         $validated_data = $request->validated();
         $slug = Post::generateSlug($request->title);
         $validated_data['slug'] = $slug;
+        $validated_data['user_id'] = Auth::id();
         
 
         if ($request->hasFile('img')){
