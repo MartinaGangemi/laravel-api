@@ -1,11 +1,10 @@
 <template>
-   <div class="container">
-      <work-in-progress/>
-      <div class="d-flex">
-         <section class ="post">
+   <div>
+     <div class="row m-0">
+         <section class ="post col-10">
+            <work-in-progress/>
             <div class="container">
                <div class="row g-5">
-
                   <div class="col-3" v-for="post in postsResponse.data" :key="post.id">
                      <!-- card -->
                      <div class="product card">
@@ -52,11 +51,20 @@
             </div>
          </section>
 
-         <aside>
+         <aside class="bg-secondary text-white col-2 p-5">
                <div class="categories">
+                  <h4>Categorie</h4>
                   <ul>
                      <li v-for="category in categories" :key="category.id">
                         {{category.name}}
+                     </li>
+                  </ul>
+               </div>
+               <div class="tags">
+                  <h4>Tags</h4>
+                  <ul>
+                     <li v-for="tag in tags" :key="tag.id">
+                        {{tag.name}}
                      </li>
                   </ul>
                </div>
@@ -81,12 +89,14 @@ export default {
     data(){
       return {
          categories: '',
+         tags:'',
          postsResponse: '',
          
       }
     },
 
    methods: {
+      //chiamata posts
       getAllPosts(postPage){
          axios.get('/api/posts', {
           params : {
@@ -103,10 +113,22 @@ export default {
       })
       },
 
+      //chiamata categorie
       getAllCategories(){
          axios.get('/api/categories')
          .then(response =>{
             this.categories=response.data
+         })
+         .catch(e =>{
+            console.error(e);
+         })
+      },
+
+      //chiamata tags
+      getAllTags(){
+         axios.get('/api/tags')
+         .then(response =>{
+            this.tags=response.data
          })
          .catch(e =>{
             console.error(e);
@@ -117,6 +139,17 @@ export default {
    mounted(){
      this.getAllPosts(1)
      this.getAllCategories()
+     this.getAllTags()
    }
 }
 </script>
+
+<style scoped lang="scss">
+   ul{
+      padding-left: 0;
+      li{
+         list-style: none;
+      }
+   }
+ 
+</style>
