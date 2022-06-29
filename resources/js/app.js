@@ -10,8 +10,9 @@ window.Vue = require('vue');
 
 import App from './views/App'
 
-Vue.component('work-in-progress', require('./components/WorkInProgress.vue').default);
-
+Vue.component('welcome-content', require('./components/WelcomeContent.vue').default);
+Vue.component('cards-component', require('./components/CardsComponent.vue').default);
+Vue.component('aside-component', require('./components/AsideComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
