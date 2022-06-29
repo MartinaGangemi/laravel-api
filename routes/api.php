@@ -31,3 +31,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('posts', 'API\PostController@index');
+Route::get('categories', 'API\CategoryController@index');
